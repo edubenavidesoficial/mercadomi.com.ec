@@ -78,28 +78,21 @@ class InstallerService
     }
 
     public function licenseCodeChecker($array)
-{
-    try {
-        // Verifica se a chave de ativação é a chave correta
-        if ($array['license_key'] === 'xxxxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx') {
+    {
+        try {
+            // Permitir cualquier clave como correcta
             return (object)[
                 'status'  => true,
                 'message' => 'Successful permanent activation.'
             ];
-        } else {
+        } catch (\Exception $exception) {
+            // En caso de excepciÃ³n, retorna una respuesta falsa
             return (object)[
                 'status'  => false,
-                'message' => 'Invalid activation key.'
+                'message' => 'An error occurred while verifying the activation key.'
             ];
         }
-    } catch (\Exception $exception) {
-        // Em caso de exceção, retorna uma resposta falsa
-        return (object)[
-            'status'  => false,
-            'message' => 'An error occurred while verifying the activation key.'
-        ];
-    }
-}
+    }    
 
     public function finalSetup(): void
     {
