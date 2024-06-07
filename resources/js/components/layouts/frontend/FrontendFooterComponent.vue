@@ -1,9 +1,10 @@
 <template>
     <LoadingComponent :props="loading" />
 
-    <footer class="pt-12 bg-secondary mobile:hidden">
+    <footer class="pt-12 bg-mercadoni mobile:hidden">
         <div class="container">
             <div class="row">
+                <p></p>
                 <div class="col-12 md:col-4 lg:col-5 mb-6 md:mb-0">
                     <div class="tablet:text-center tablet:mx-auto w-full max-w-xs">
                         <router-link :to="{ name: 'frontend.home' }">
@@ -172,3 +173,9 @@ export default {
     }
 }
 </script>
+<style>
+.bg-mercadoni {
+    --tw-bg-opacity: 1;
+    background-color: rgb(40 40 40 / var(--tw-bg-opacity));
+}
+</style>
