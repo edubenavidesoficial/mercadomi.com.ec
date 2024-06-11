@@ -28,21 +28,21 @@
             <div class="section-mar text-right">
                 <h2 class="title">Sección</h2>
                 <h2 class="title-m">Ferreteria</h2>
-                <a class="button" href="#">
+                <a class="button" href="/#/product?category=ferreteria">
                     <span>Visítanos</span>
                 </a>
             </div>
             <div class="section-mar text-right">
                 <h2 class="title">Sección</h2>
                 <h2 class="title-m">Hogar</h2>
-                <a class="button" href="#">
+                <a class="button" href="/#/product?category=hogar">
                     <span>Visítanos</span>
                 </a>
             </div>
             <div class="section-mar text-right">
                 <h2 class="title">Sección</h2>
                 <h2 class="title-m">Mascotas</h2>
-                <a class="button" href="#">
+                <a class="button" href="/#/product?category=mascotas">
                     <span>Visítanos</span>
                 </a>
             </div>
