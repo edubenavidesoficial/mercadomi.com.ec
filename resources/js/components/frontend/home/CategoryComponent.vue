@@ -1,11 +1,11 @@
 <template>
     <LoadingComponent :props="loading" />
-    <section v-if="categories.length > 0" class="sm:mb-10">
+    <section v-if="categories.length > 0" class="sm:mb-10 block sm:hidden">
         <div class="container">
-            <h2 class="text-2xl sm:text-4xl font-bold -mb-10">{{ $t('label.browse_by_categories')}}</h2>
+            <h2 class="text-2xl sm:text-4xl font-bold -mb-10">{{ $t('label.browse_by_categories') }}</h2>
             <Swiper dir="ltr" :speed="1000" :loop="true" :navigation="true" :modules="modules" class="navigate-swiper" :breakpoints="breakpoints">
                 <SwiperSlide v-for="category in categories" class="mobile:!w-24">
-                    <router-link :to="{name: 'frontend.product', query:{ category: category.slug}}"
+                    <router-link :to="{name: 'frontend.product', query: { category: category.slug }}"
                                  class="w-full rounded-2xl shadow-xs group">
                         <img class="w-full block rounded-tl-2xl rounded-tr-2xl" :src="category.thumb" alt="category" loading="lazy">
                         <span class="text-sm sm:text-xl font-medium capitalize text-center py-2 px-3 overflow-hidden whitespace-nowrap text-ellipsis block rounded-bl-2xl rounded-br-2xl group-hover:text-primary">
@@ -14,6 +14,38 @@
                     </router-link>
                 </SwiperSlide>
             </Swiper>
+        </div>
+    </section>
+    <section class="hidden sm:block">
+        <div class="container-mar">
+            <div class="section-mar text-right">
+                <h2 class="title">Sección</h2>
+                <h2 class="title-m">Supermercado</h2>
+                <a class="button" href="/#/product?category=supermercado">
+                    <span>Visítanos</span>
+                </a>
+            </div>
+            <div class="section-mar text-right">
+                <h2 class="title">Sección</h2>
+                <h2 class="title-m">Ferreteria</h2>
+                <a class="button" href="#">
+                    <span>Visítanos</span>
+                </a>
+            </div>
+            <div class="section-mar text-right">
+                <h2 class="title">Sección</h2>
+                <h2 class="title-m">Hogar</h2>
+                <a class="button" href="#">
+                    <span>Visítanos</span>
+                </a>
+            </div>
+            <div class="section-mar text-right">
+                <h2 class="title">Sección</h2>
+                <h2 class="title-m">Mascotas</h2>
+                <a class="button" href="#">
+                    <span>Visítanos</span>
+                </a>
+            </div>
         </div>
     </section>
 </template>
@@ -80,4 +112,67 @@ export default {
     },
 }
 </script>
+<style>
+.container-mar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1500px;
+}
+
+.section-mar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Cambia el alineamiento de los elementos hijos a la derecha */
+    justify-content: center;
+    background-color: #cf362f;
+    margin-bottom: 20px;
+    padding: 10px;
+    min-height: 175px;
+    transition: transform 0.3s;
+}
+
+.section-mar:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+.title-m {
+    margin: 0;
+    font-size: 19px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.title {
+    margin: 0;
+    font-size: 10px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.button {
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
+    padding: 10px 20px;
+    border-radius: 23px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #444;
+}
+
+@media (min-width: 768px) {
+    .container-mar {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .section-mar {
+        flex-basis: 48%;
+        margin: 1%;
+    }
+}
+
+</style>
 

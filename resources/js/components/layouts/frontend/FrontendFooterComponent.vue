@@ -249,18 +249,6 @@ export default {
     text-align: center;
     cursor: pointer;
 }
-
-.elementor *, .elementor :after, .elementor :before {
-    box-sizing: border-box;
-}
-.elementor-widget-divider:not(.elementor-widget-divider--view-line_text):not(.elementor-widget-divider--view-line_icon) .elementor-divider-separator {
-    border-block-start: var(--divider-border-width) var(--divider-border-style) var(--divider-color);
-}
-.elementor-111 .elementor-element.elementor-element-211d881 .elementor-divider-separator {
-    width: 20%;
-    margin: 0 auto;
-    margin-left: 0;
-}
 .icon-mar {
     width: 1em;
     height: 1em;
@@ -273,6 +261,7 @@ export default {
 }
 .text-yellow{
     color: #E8A623;
+    text-transform: uppercase;
 }
 .custom-divider-separator {
     border-block-start: 2px solid #E8A623; /* Aplicando el color directamente */
