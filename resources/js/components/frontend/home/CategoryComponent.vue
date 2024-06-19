@@ -21,28 +21,28 @@
             <div class="section-mar text-right">
                 <h2 class="title">Sección</h2>
                 <h2 class="title-m">Supermercado</h2>
-                <a class="button" href="/#/product?category=supermercado">
+                <a class="button" href="/#/supermercado">
                     <span>Visítanos</span>
                 </a>
             </div>
             <div class="section-mar text-right">
                 <h2 class="title">Sección</h2>
                 <h2 class="title-m">Ferreteria</h2>
-                <a class="button" href="/#/product?category=ferreteria">
+                <a class="button" href="/#/ferreteria">
                     <span>Visítanos</span>
                 </a>
             </div>
             <div class="section-mar text-right">
                 <h2 class="title">Sección</h2>
                 <h2 class="title-m">Hogar</h2>
-                <a class="button" href="/#/product?category=hogar">
+                <a class="button" href="/#/hogar">
                     <span>Visítanos</span>
                 </a>
             </div>
             <div class="section-mar text-right">
                 <h2 class="title">Sección</h2>
                 <h2 class="title-m">Mascotas</h2>
-                <a class="button" href="/#/product?category=mascotas">
+                <a class="button" href="/#/mascotas">
                     <span>Visítanos</span>
                 </a>
             </div>

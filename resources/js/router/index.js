@@ -2,6 +2,10 @@ import {createRouter, createWebHashHistory} from "vue-router";
 import ENV from '../config/env';
 import appService from "../services/appService";
 import DashboardComponent from "../components/admin/dashboard/DashboardComponent";
+import SupermercadoComponent from '../components/cat/SupermercadoComponent.vue';
+import FerreteriaComponent from '../components/cat/FerreteriaComponent.vue';
+import HogarComponent from '../components/cat/HogarComponent.vue';
+import MascotasComponent from '../components/cat/MascotasComponent.vue'; // Importa el componente
 import ExceptionComponent from "../components/exception/ExceptionComponent.vue";
 import NotFoundComponent from "../components/exception/NotFoundComponent.vue";
 import store from "../store";
@@ -62,6 +66,26 @@ const baseRoutes = [
             permissionUrl: "dashboard",
             breadcrumb: "dashboard",
         },
+    },
+    {
+        path: "/supermercado", // Nueva ruta
+        component: SupermercadoComponent,
+        meta: { isFrontend: true }
+    },
+    {
+        path: "/ferreteria", // Nueva ruta
+        component: FerreteriaComponent,
+        meta: { isFrontend: true }
+    },
+    {
+        path: "/hogar", // Nueva ruta
+        component: HogarComponent,
+        meta: { isFrontend: true }
+    },
+    {
+        path: "/mascotas", // Nueva ruta
+        component: MascotasComponent,
+        meta: { isFrontend: true }
     },
 ];
 
