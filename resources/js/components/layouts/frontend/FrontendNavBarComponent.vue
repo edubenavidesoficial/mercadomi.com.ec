@@ -268,7 +268,7 @@
                         bis_skin_checked="1">
                         <nav class="header-nav hidden lg:block">
                             <div class="flex items-center space-x-6">
-                                <div class="flex items-center">
+                                <div class="flex items-center spacio">
                                     <span class="farmart-svg-icon">
                                         <svg aria-hidden="true" class="e-font-icon-svg e-fab-whatsapp"
                                             viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -664,6 +664,10 @@ farmart-svg-icon {
 
 .e-mar {
     padding-top: 20px;
+}
+
+.spacio{
+    padding-right: 0.9rem;
 }
 
 </style>

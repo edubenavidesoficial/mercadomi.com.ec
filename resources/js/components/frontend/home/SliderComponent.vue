@@ -1,6 +1,6 @@
 <template>
     <LoadingComponent :props="loading" />
-    <section class="mb-10 sm:mb-20">
+    <section class="mb-10 sm:mb-10">
         <div>
             <Swiper v-if="sliders.length > 0" :slides-per-view="1" :speed="1000" :loop="true" :navigation="true"
                     :pagination="{ clickable: true }" :autoplay="{ delay: 2500 }" :modules="modules"

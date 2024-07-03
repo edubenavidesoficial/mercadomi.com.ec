@@ -115,20 +115,23 @@ export default {
 <style>
 .container-mar {
     display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+    flex-wrap: wrap;
+    max-width: 1500px;
+    justify-content: space-between;
 }
 
 .section-mar {
+    flex: 1 1 calc(20% - 20px);
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Cambia el alineamiento de los elementos hijos a la derecha */
+    align-items: flex-end;
     justify-content: center;
     background-color: #cf362f;
     margin-bottom: 20px;
     padding: 10px;
     min-height: 175px;
     transition: transform 0.3s;
+    margin: 10px;
 }
 
 .section-mar:hover {
@@ -177,5 +180,11 @@ export default {
         text-align: left;
     }
 }
+.text-yellow {
+    color: #e8a623;
+    text-transform: uppercase;
+    font-size: 1.5rem !important;
+}
+
 </style>
 
