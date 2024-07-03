@@ -114,7 +114,7 @@ export default {
 </script>
 <style>
 .container-mar {
-    display: block; /* O cualquier estilo que desees aplicar */
+    display: flex;
         flex-direction: column;
         justify-content: flex-start;
 }
@@ -171,7 +171,6 @@ export default {
 
     .section-mar {
         flex-basis: auto;
-        margin: 0;
     }
 
     .text-right {
