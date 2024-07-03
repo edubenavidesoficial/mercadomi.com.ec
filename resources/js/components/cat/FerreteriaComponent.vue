@@ -5,7 +5,7 @@
             <div class="banner-text">Ferreteria</div>
         </a>
     </div>
-    <section v-if="categories.length > 0" class="sm:mb-10 block sm:hidden">
+    <section v-if="categories.length > 0" class="sm:mb-10 hidden">
         <div class="container">
             <h2 class="text-2xl sm:text-4xl font-bold -mb-10">{{ $t('label.browse_by_categories') }}</h2>
             <Swiper dir="ltr" :speed="1000" :loop="true" :navigation="true" :modules="modules" class="navigate-swiper" :breakpoints="breakpoints">
@@ -21,7 +21,7 @@
             </Swiper>
         </div>
     </section>
-    <section class="hidden sm:block">
+    <section>
         <div class="container-cat">
             <div v-for="category in staticCategories" :key="category.name" class="section-cat text-right">
                 <h2 class="title">{{ category.title }}</h2>
@@ -77,12 +77,12 @@ export default {
     { title: 'SECCIÓN', name: 'FERRETERIA PARA CONSTRUCCIÓN', link: '/#/product?category=ferreteria-construccion', buttonText: 'VISITANOS' },
     { title: 'SECCIÓN', name: 'FERRETERIA PARA CARPINTERÍA', link: '/#/product?category=ferreteria-carpinteria', buttonText: 'VAlTANOS' },
     { title: 'SECCIÓN', name: 'HERRAMIENTAS MANUALES', link: '/#/product?category=herramientas-manuales', buttonText: 'VISITANOS' },
-    { title: 'SECCIÓN', name: 'HERRAMIENTAS ELECTRICAS', link: '/#/product?category=herramientas-electricas', buttonText: 'VSiTANOS' },
-    { title: 'SECCIÓN', name: 'FERRETERÍA PARA CONSTRUCCIÓN', link: '/#/product?category=ferreteria-construccion', buttonText: 'VATTANOS' },
+    { title: 'SECCIÓN', name: 'HERRAMIENTAS ELECTRICAS', link: '/#/product?category=herramientas-electricas', buttonText: 'VISITANOS' },
+    { title: 'SECCIÓN', name: 'FERRETERÍA PARA CONSTRUCCIÓN', link: '/#/product?category=ferreteria-construccion', buttonText: 'VISITANOS' },
     { title: 'SECCIÓN', name: 'FERRETERIA PARA CARPINTERIA', link: '/#/product?category=ferreteria-carpinteria', buttonText: 'VISITANOS' },
-    { title: 'SECCIÓN', name: 'FERRETERIA PARA PLOMERIA', link: '/#/product?category=ferreteria-plomeria', buttonText: '' },
-    { title: 'SECCIÓN', name: 'FERRETERIA PARA ELECTRICIDAD', link: '/#/product?category=ferreteria-electricidad', buttonText: 'SITANOS' },
-    { title: 'SECCIÓN', name: 'FERRETERÍA PARA JARDINERIA', link: '/#/product?category=ferreteria-jardineria', buttonText: '' },
+    { title: 'SECCIÓN', name: 'FERRETERIA PARA PLOMERIA', link: '/#/product?category=ferreteria-plomeria', buttonText: 'VISITANOS' },
+    { title: 'SECCIÓN', name: 'FERRETERIA PARA ELECTRICIDAD', link: '/#/product?category=ferreteria-electricidad', buttonText: 'VISITANOS' },
+    { title: 'SECCIÓN', name: 'FERRETERÍA PARA JARDINERIA', link: '/#/product?category=ferreteria-jardineria', buttonText: 'VISITANOS' },
     { title: 'SECCIÓN', name: 'CERRADURAS DE SEGURIDAD', link: '/#/product?category=cerraduras-seguridad', buttonText: 'VISITANOS' }
 ]
         }

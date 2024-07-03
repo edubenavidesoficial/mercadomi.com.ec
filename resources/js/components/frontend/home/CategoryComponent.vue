@@ -1,6 +1,6 @@
 <template>
     <LoadingComponent :props="loading" />
-    <section v-if="categories.length > 0" class="sm:mb-10 block sm:hidden">
+    <section v-if="categories.length > 0" class="sm:mb-10 hidden">
         <div class="container">
             <h2 class="text-2xl sm:text-4xl font-bold -mb-10">{{ $t('label.browse_by_categories') }}</h2>
             <Swiper dir="ltr" :speed="1000" :loop="true" :navigation="true" :modules="modules" class="navigate-swiper" :breakpoints="breakpoints">
@@ -16,7 +16,7 @@
             </Swiper>
         </div>
     </section>
-    <section class="hidden sm:block">
+    <section>
         <div class="container-mar">
             <div class="section-mar text-right">
                 <h2 class="title">Sección</h2>
@@ -114,10 +114,9 @@ export default {
 </script>
 <style>
 .container-mar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1500px;
+    display: block; /* O cualquier estilo que desees aplicar */
+        flex-direction: column;
+        justify-content: flex-start;
 }
 
 .section-mar {
@@ -162,17 +161,22 @@ export default {
     background-color: #444;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
     .container-mar {
-        flex-direction: row;
-        justify-content: space-between;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1500px;
     }
 
     .section-mar {
-        flex-basis: 48%;
-        margin: 1%;
+        flex-basis: auto;
+        margin: 0;
+    }
+
+    .text-right {
+        text-align: left;
     }
 }
-
 </style>
 
