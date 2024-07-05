@@ -52,3 +52,10 @@ export default {
     },
 }
 </script>
+<style>
+.text-yellow {
+    color: #e8a623;
+    text-transform: uppercase;
+    font-size: 1.5rem !important;
+}
+</style>

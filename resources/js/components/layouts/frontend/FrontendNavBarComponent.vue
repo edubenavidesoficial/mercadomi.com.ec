@@ -34,7 +34,7 @@
                         </li>
 
                         <li class="header-nav-item">
-                            <button type="button" class="header-nav-menu down-arrow">
+                            <button type="button" class="header-nav-menu down-arrow text-white">
                                 {{ $t('label.categories') }}
                             </button>
                             <div
@@ -86,7 +86,7 @@
                         </li>
 
                         <li class="header-nav-item">
-                            <router-link class="header-nav-menu"
+                            <router-link class="header-nav-menu text-white"
                                 :class="checkIsPathAndRoutePathSame('/offers') ? 'router-link-active router-link-exact-active' : ''"
                                 :to="{ name: 'frontend.offers' }">
                                 {{ $t("label.offers") }}
@@ -108,9 +108,9 @@
                 <!-- Language Start -->
                 <div v-if="setting.site_language_switch === enums.activityEnum.ENABLE"
                     class="relative group hidden lg:block">
-                    <button type="button" class="flex items-center gap-2 py-5 down-arrow">
+                    <button type="button" class="flex items-center gap-2 py-5 down-arrow text-white">
                         <img :src="language.image" alt="language" class="w-4 h-4 rounded-full" loading="lazy" />
-                        <span class="font-semibold capitalize">{{ language.name }}</span>
+                        <span class="font-semibold capitalize text-white">{{ language.name }}</span>
                     </button>
 
                     <ul
@@ -127,7 +127,7 @@
 
                 <!-- Wishlist Start -->
                 <router-link class="hidden lg:block relative" :to="{ name: 'frontend.wishlist' }">
-                    <i class="lab-line-heart text-xl"></i>
+                    <i class="lab-line-heart text-xl text-white"></i>
                     <span v-if="wishlists.length > 0"
                         class="absolute top-2 ltr:-right-2 rtl:-left-2 text-[10px] font-medium h-4 px-1 !leading-[14px] text-center rounded-full border border-white text-white bg-primary">
                         {{ wishlists.length }}
@@ -137,7 +137,7 @@
 
                 <!-- My Account Start -->
                 <div class="relative hidden lg:block group">
-                    <button type="button" class="lab-line-user text-xl py-5"></button>
+                    <button type="button" class="lab-line-user text-xl text-white py-5"></button>
                     <div v-if="logged"
                         class="w-60 absolute top-15 -right-10 z-10 rounded-2xl overflow-hidden shadow-card bg-white transition-all duration-300 origin-top scale-y-0 group-hover:scale-y-100">
                         <div class="flex items-center gap-3 p-4 border-b border-[#EFF0F6]">

@@ -19,7 +19,7 @@
                                 <input type="email" v-model="subscriptionProps.post.email"
                                     :placeholder="$t('label.your_email_address')" class="w-full h-full pl-3 pr-2">
                                 <button type="submit"
-                                    class="text-xs font-semibold capitalize flex-shrink-0 px-3 h-full rounded-3xl bg-primary text-yellow">
+                                    class="text-xs font-semibold capitalize flex-shrink-0 px-3 h-full rounded-3xl bg-primary text-m">
                                     {{ $t('button.subscribe') }}
                                 </button>
                             </div>
@@ -262,6 +262,10 @@ export default {
 .text-yellow{
     color: #E8A623;
     text-transform: uppercase;
+}
+.text-m {
+    color: #e8a623;
+    font-size: 0.5rem !important;
 }
 .custom-divider-separator {
     border-block-start: 2px solid #E8A623; /* Aplicando el color directamente */

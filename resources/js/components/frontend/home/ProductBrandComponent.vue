@@ -3,7 +3,7 @@
 
     <section class="mb-3 sm:mb-10" v-if="brands.length > 1">
         <div class="container">
-            <h2 class="capitalize text-2xl sm:text-4xl font-bold -mb-10">
+            <h2 class="capitalize text-2xl sm:text-4xl font-bold -mb-10 text-yellow">
                 {{ $t('label.popular_brands') }}
             </h2>
             <Swiper dir="ltr" :speed="1000" :loop="true" :navigation="true" :modules="modules" class="navigate-swiper" :breakpoints="breakpoints">
@@ -75,4 +75,10 @@ export default {
     }
 }
 </script>
-
+<style>
+.text-yellow {
+    color: #e8a623;
+    text-transform: uppercase;
+    font-size: 1.5rem !important;
+}
+</style>
