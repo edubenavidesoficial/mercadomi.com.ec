@@ -8,7 +8,8 @@
                 <div v-if="page.image" class="w-full mb-6">
                     <img :src="page.image" alt="image" loading="lazy">
                 </div>
-                <div v-html="page.description">
+                <div class="rounded-lg border border-gray-200 p-4">
+                    <div v-html="decodeHtml(page.description)"></div>
                 </div>
             </div>
             <TemplateManagerComponent :menuTemplateId="page.menu_template_id" />
@@ -21,7 +22,7 @@ import TemplateManagerComponent from "../components/TemplateManagerComponent.vue
 
 export default {
     name: "PageComponent",
-    components: {TemplateManagerComponent},
+    components: { TemplateManagerComponent },
     computed: {
         page: function () {
             return this.$store.getters['frontendPage/show'];
@@ -35,6 +36,11 @@ export default {
             if (Object.keys(this.$route.params).length > 0 && typeof this.$route.params.slug === 'string') {
                 this.$store.dispatch('frontendPage/show', this.$route.params.slug).then().catch()
             }
+        },
+        decodeHtml: function (html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
         }
     },
     watch: {

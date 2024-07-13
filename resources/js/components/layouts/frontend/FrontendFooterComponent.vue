@@ -265,7 +265,7 @@ export default {
 }
 .text-m {
     color: #e8a623;
-    font-size: 0.5rem !important;
+    font-size: 0.9rem !important;
 }
 .custom-divider-separator {
     border-block-start: 2px solid #E8A623; /* Aplicando el color directamente */
@@ -273,5 +273,4 @@ export default {
     margin: 0 auto;
     margin-left: 0;
 }
-
 </style>
