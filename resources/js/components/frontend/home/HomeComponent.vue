@@ -1,19 +1,21 @@
 <template>
-    <SliderComponent />
+    <div class="padding-lg">
+        <SliderComponent />
 
-    <CategoryComponent />
+        <CategoryComponent />
 
-    <PromotionComponent />
+        <PromotionComponent />
 
-    <ProductSectionComponent />
+        <ProductSectionComponent />
 
-    <MostPopularComponent />
+        <MostPopularComponent />
 
-    <FlashSaleComponent />
+        <FlashSaleComponent />
 
-    <ProductBrandComponent />
+        <ProductBrandComponent />
 
-    <BenefitComponent />
+        <BenefitComponent />
+    </div>
 </template>
 
 <script>
@@ -41,3 +43,25 @@ export default {
     }
 };
 </script>
+<style>
+/* styles.css or similar file */
+.padding-lg {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+@media (min-width: 768px) {
+    .padding-lg {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .padding-lg {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+}
+
+</style>

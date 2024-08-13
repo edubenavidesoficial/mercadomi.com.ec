@@ -1,9 +1,5 @@
-import { createApp } from 'vue';
-import DefaultComponent from "./components/DefaultComponent.vue"; // Asegúrate de tener la extensión .vue si es necesario
-import SupermercadoComponent from './components/cat/SupermercadoComponent.vue';
-import FerreteriaComponent from './components/cat/FerreteriaComponent.vue';
-import HogarComponent from './components/cat/HogarComponent.vue';
-import MascotasComponent from './components/cat/MascotasComponent.vue';
+import {createApp} from 'vue';
+import DefaultComponent from "./components/DefaultComponent";
 import router from './router';
 import store from './store';
 import axios from 'axios';
@@ -19,7 +15,6 @@ import "../../public/themes/default/fonts/iconly/iconly.css";
 import "../../public/themes/default/fonts/public/public.css";
 import "../../public/themes/default/fonts/fontawesome/fontawesome.css";
 import { createHead } from '@vueuse/head';
-
 const head = createHead();
 
 /* Start tooltip alert code */
@@ -38,7 +33,8 @@ const toastOptions = {
 };
 /* End tooltip alert code */
 
-/* Start axios code */
+
+/* Start axios code*/
 const API_URL = ENV.API_URL;
 const API_KEY = ENV.API_KEY;
 
@@ -60,19 +56,15 @@ axios.interceptors.request.use(
     },
     error => Promise.reject(error),
 );
-/* End axios code */
 
+/* End axios code */
 const app = createApp({});
 app.component('default-component', DefaultComponent);
-app.component('supermercado-component', SupermercadoComponent);
-app.component('ferreteria-component', FerreteriaComponent);
-app.component('hogar-component', HogarComponent);
-app.component('mascotas-component', MascotasComponent);
-app.component('vue-select', VueNextSelect);
-app.use(router);
-app.use(store);
-app.use(VueSimpleAlert);
-app.use(Toast, toastOptions);
-app.use(i18n);
-app.use(head);
+app.component('vue-select', VueNextSelect)
+app.use(router)
+app.use(store)
+app.use(VueSimpleAlert)
+app.use(Toast, toastOptions)
+app.use(i18n)
+app.use(head)
 app.mount('#app');

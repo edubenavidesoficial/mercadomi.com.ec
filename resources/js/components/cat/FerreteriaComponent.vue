@@ -5,7 +5,7 @@
             <div class="banner-text">Ferreteria</div>
         </a>
     </div>
-    <section v-if="categories.length > 0" class="sm:mb-10 hidden">
+    <section v-if="categories.length > 0" class="sm:mb-10 block sm:hidden">
         <div class="container">
             <h2 class="text-2xl sm:text-4xl font-bold -mb-10">{{ $t('label.browse_by_categories') }}</h2>
             <Swiper dir="ltr" :speed="1000" :loop="true" :navigation="true" :modules="modules" class="navigate-swiper" :breakpoints="breakpoints">
@@ -21,7 +21,7 @@
             </Swiper>
         </div>
     </section>
-    <section>
+    <section class="hidden sm:block">
         <div class="container-cat">
             <div v-for="category in staticCategories" :key="category.name" class="section-cat text-right">
                 <h2 class="title">{{ category.title }}</h2>

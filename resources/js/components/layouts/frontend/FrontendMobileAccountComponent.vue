@@ -111,3 +111,9 @@ export default {
     }
 }
 </script>
+<style>
+#mobile-profile-canvas{
+    margin-top: 30px;
+}
+
+</style>
