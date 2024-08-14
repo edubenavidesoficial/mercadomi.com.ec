@@ -15,6 +15,7 @@
                         <img class="h-6" :src="cashOnDelivery.image" alt="payment" loading="lazy" />
                         <span class="text-xs font-medium">{{ cashOnDelivery.name }}</span>
                     </div>
+                    <div class="border-primary/50 bg-[#FFF4F1] flex flex-col items-center justify-center gap-2.5 py-4 rounded-lg shadow-xs cursor-pointer border" ><img class="h-6" src="https://www.datafast.com.ec/images/logos/datafast-logo-actual.png" alt="payment" loading="lazy"><span class="text-xs font-medium">DATAFAST</span></div>
 
                     <div v-if="profile.balance >= total" @click.prevent="selectPaymentMethod(credit)"
                         :class="Object.keys(paymentMethod).length > 0 && credit.id === paymentMethod.id ? 'border-primary/50 bg-[#FFF4F1]' : 'border-white bg-white'"
