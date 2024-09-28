@@ -18,11 +18,11 @@
                 <div class="block w-full h-full relative">
                     <img
                         class="banner-image-cat"
-                        src="https://mercadomi.com.ec/storage/31/conversions/freshthursday.png"
+                        src="https://mercadomi.com.ec/storage/31/conversions/freshthursday.jpg"
                         srcset="
-                            https://mercadomi.com.ec/storage/31/conversions/freshthursday-small.png 600w,
-                            https://mercadomi.com.ec/storage/31/conversions/freshthursday-medium.png 1200w,
-                            https://mercadomi.com.ec/storage/31/conversions/freshthursday-large.png 1800w"
+                            https://mercadomi.com.ec/storage/31/conversions/freshthursday.jpg 600w,
+                            https://mercadomi.com.ec/storage/31/conversions/freshthursday.jpg 1200w,
+                            https://mercadomi.com.ec/storage/31/conversions/freshthursday.jpg 1800w"
                         sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt="banner"
                         loading="lazy">
@@ -50,9 +50,9 @@
                         class="banner-image-cat"
                         src="https://mercadomi.com.ec/storage/31/conversions/partiesjulianas.jpeg"
                         srcset="
-                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas-small.jpeg 600w,
-                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas-medium.jpeg 1200w,
-                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas-large.jpeg 1800w"
+                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas.jpeg 600w,
+                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas.jpeg 1200w,
+                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas.jpeg 1800w"
                         sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         alt="banner"
                         loading="lazy">
