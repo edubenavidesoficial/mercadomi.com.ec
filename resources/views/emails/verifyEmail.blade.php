@@ -1,9 +1,9 @@
 @component('mail::message')
     # Verify Email
 
-    Your code is {{ $pin }}
+    Tu código es {{ $pin }}
 
-    Please do not share your One Time Code With Anyone.
+    No comparta su código único con nadie.
 
     Thanks,
     {{ config('app.name') }}

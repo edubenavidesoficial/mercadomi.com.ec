@@ -1,12 +1,12 @@
 @component('mail::message')
     # Reset Password
 
-    Your code is {{$pin}}
+    Tu código es {{$pin}}
 
-    Please do not share your One Time Code With Anyone.
-    You made a request to reset your password. Please
-    discard if this wasn't you.
+    No comparta su código único con nadie.
+    Hiciste una solicitud para restablecer tu contraseña. Por favor
+    descarta si este no fueras tú.
 
-    Thanks,
+    Gracias,
     {{ config('app.name') }}
 @endcomponent

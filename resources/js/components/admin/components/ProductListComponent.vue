@@ -1,6 +1,6 @@
 <template>
     <div v-if="products.length > 0" v-for="product in products"
-        class="sm:p-2 sm:shadow-card transition-all duration-300 sm:hover:shadow-hover group">
+        class="sm:p-2 rounded-2xl sm:shadow-card transition-all duration-300 sm:hover:shadow-hover group">
         <div class="relative overflow-hidden rounded-xl isolate">
             <label
                 class="capitalize text-xs font-semibold rounded-xl py-1 px-2 shadow-badge absolute top-3 left-3 z-10 bg-secondary text-white"

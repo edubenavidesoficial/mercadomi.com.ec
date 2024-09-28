@@ -25,6 +25,6 @@ class SendOtpMail extends Mailable
 
     public function build()
     {
-        return $this->subject("Verify Email")->markdown('emails.verifyEmail');
+        return $this->subject("Verificar correo")->markdown('emails.verifyEmail');
     }
 }

@@ -29,6 +29,6 @@ class OrderMail extends Mailable
 
     public function build()
     {
-        return $this->subject("Order Notification")->markdown('emails.order');
+        return $this->subject("Notificación de pedido")->markdown('emails.order');
     }
 }

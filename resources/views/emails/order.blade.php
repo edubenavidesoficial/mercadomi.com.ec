@@ -1,11 +1,11 @@
 @component('mail::message')
     # Order Notification
 
-    Hello {{ $name }},
+    Hola {{ $name }},
 
-    Order ID : {{$orderId}}
+    Orden ID : {{$orderId}}
     {{$message}}
 
-    Thanks,
+    Gracias,
     {{ config('app.name') }}
 @endcomponent

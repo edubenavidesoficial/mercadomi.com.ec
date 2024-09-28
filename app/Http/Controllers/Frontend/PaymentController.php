@@ -32,6 +32,53 @@ class PaymentController extends Controller
         $this->paymentManagerService = $paymentManagerService;
     }
 
+    public function getCheckoutId()
+    {
+        $url = "https://test.oppwa.com/v1/checkouts";
+        $data = "entityId=8a829418533cf31d01533d06f2ee06fa&amount=92.00&currency=USD&paymentType=DB";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer OGE4Mjk0MTg1MzNjZjMxZDAxNTMzZDA2ZmQwNDA3NDh8WHQ3RjIyUUVOWA=='
+        ]);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Establece esto en true en producción
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $responseData = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return response()->json(['error' => curl_error($ch)], 500);
+        }
+        curl_close($ch);
+        return response()->json(json_decode($responseData, true));
+    }
+
+    public function getTransactionStatus($resourcePath)
+    {
+        // La URL base del ambiente de prueba o producción
+        $url = "https://test.oppwa.com" . $resourcePath;
+        $url .= "?entityId=8a829418533cf31d01533d06f2ee06fa"; // Incluye el entityId
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Authorization: Bearer OGE4Mjk0MTg1MzNjZjMxZDAxNTMzZDA2ZmQwNDA3NDh8WHQ3RjIyUUVOWA=='
+        ));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Establece esto en true en producción
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $responseData = curl_exec($ch);
+        if (curl_errno($ch)) {
+            return response()->json(['error' => curl_error($ch)], 500);
+        }
+
+        curl_close($ch);
+
+        // Decodifica y retorna la respuesta JSON
+        return response()->json(json_decode($responseData, true));
+    }
+
     public function index(PaymentGateway $paymentGateway, Order $order): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
         $credit          = false;
@@ -69,6 +116,81 @@ class PaymentController extends Controller
 
     public function payment(Order $order, PaymentRequest $request)
     {
+        // Verifica si el método de pago es DataFast
+        if ($request->paymentMethod === 'datafast') {
+            // Implementa la lógica de pago para DataFast
+            try {
+                $data = [
+                    'entity_id' => 'tu_entity_id', // Identificador de la entidad de DataFast.
+                    'bearer_token' => 'tu_bearer_token', // Token de autenticación proporcionado por DataFast.
+                    'MID' => 'tu_MID', // Identificador del comercio.
+                    'TID' => 'tu_TID', // Identificador del terminal.
+
+                    'amount' => $order->total, // Monto total del pedido.
+                    'currency' => $order->currency, // Moneda del pedido (por ejemplo, USD, EUR).
+                    'order_id' => $order->id, // Identificador único del pedido.
+
+                    // Detalles de la tarjeta de crédito
+                    'card_number' => $request->input('cardNumber'), // Número de tarjeta.
+                    'expiry_date' => $request->input('expiryDate'), // Fecha de expiración (formato MMYY).
+                    'cvv' => $request->input('cvv'), // Código de seguridad CVV.
+
+                    // Información del titular de la tarjeta
+                    'card_holder_name' => $request->input('cardHolderName'), // Nombre del titular de la tarjeta.
+                    'card_holder_email' => $request->input('cardHolderEmail'), // Email del titular de la tarjeta.
+
+                    // Información de facturación
+                    'billing_address' => $request->input('billingAddress'), // Dirección de facturación.
+                    'billing_city' => $request->input('billingCity'), // Ciudad de facturación.
+                    'billing_state' => $request->input('billingState'), // Estado de facturación.
+                    'billing_zip' => $request->input('billingZip'), // Código postal de facturación.
+                    'billing_country' => $request->input('billingCountry'), // País de facturación.
+
+                    // Opcionales según la implementación
+                    'redirect_url' => route('payment.success', ['paymentGateway' => 'datafast', 'order' => $order]), // URL de redirección en caso de éxito.
+                    'cancel_url' => route('payment.cancel', ['paymentGateway' => 'datafast', 'order' => $order]), // URL de redirección en caso de cancelación.
+                    'fail_url' => route('payment.fail', ['paymentGateway' => 'datafast', 'order' => $order]), // URL de redirección en caso de fallo.
+
+                    'description' => 'Pago por el pedido ' . $order->id, // Descripción del pago.
+                    'ip_address' => $request->ip(), // IP del cliente.
+                    'user_agent' => $request->header('User-Agent'), // User-Agent del navegador del cliente.
+
+                    // Parámetros adicionales según los requerimientos de DataFast
+                    'additional_data' => [
+                        // Aquí podrías añadir cualquier otro dato adicional requerido por DataFast.
+                    ],
+                ];
+
+                // Envía la solicitud a la API de DataFast
+                $response = $this->sendToDataFast($data);
+
+                // Maneja la respuesta de DataFast
+                if ($response->isSuccessful()) {
+                    // Actualiza el estado del pedido a pagado
+                    $order->update(['payment_status' => PaymentStatus::PAID]);
+
+                    // Redirige al usuario a la página de éxito
+                    return redirect()->route('payment.success', [
+                        'paymentGateway' => $request->paymentMethod,
+                        'order' => $order
+                    ]);
+                } else {
+                    // Redirige a la página de error con el mensaje de error de DataFast
+                    return redirect()->route('payment.fail', [
+                        'paymentGateway' => $request->paymentMethod,
+                        'order' => $order
+                    ])->with('error', $response->getMessage());
+                }
+            } catch (\Exception $e) {
+                // Maneja excepciones y redirige con un mensaje de error
+                return redirect()->route('payment.fail', [
+                    'paymentGateway' => $request->paymentMethod,
+                    'order' => $order
+                ])->with('error', 'Error al procesar el pago: ' . $e->getMessage());
+            }
+        }
+
+        // Mantiene la lógica existente para otros métodos de pago
         if ($this->paymentManagerService->gateway($request->paymentMethod)->status()) {
             $className = 'App\\Http\\PaymentGateways\\PaymentRequests\\' . ucfirst($request->paymentMethod);
             $gateway   = new $className;
@@ -80,6 +202,17 @@ class PaymentController extends Controller
                 trans('all.message.payment_gateway_disable')
             );
         }
+    }
+
+    // Método para enviar datos a la API de DataFast
+    private function sendToDataFast($data)
+    {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->post('https://api.datafast.com/payment', [
+            'form_params' => $data
+        ]);
+
+        return json_decode($response->getBody());
     }
 
     public function success(PaymentGateway $paymentGateway, Order $order, Request $request)

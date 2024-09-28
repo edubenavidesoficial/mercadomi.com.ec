@@ -27,6 +27,6 @@ class OrderGotMail extends Mailable
 
     public function build()
     {
-        return $this->subject("You got a new order")->markdown('emails.orderGot');
+        return $this->subject("Tienes un nuevo pedido")->markdown('emails.orderGot');
     }
 }

@@ -8,6 +8,7 @@
                 </h4>
 
                 <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 p-4">
+                    <!-- Métodos de pago existentes -->
                     <div v-if="Object.keys(cashOnDelivery).length > 0 && setting.site_cash_on_delivery === ActivityEnum.ENABLE"
                         @click.prevent="selectPaymentMethod(cashOnDelivery)"
                         :class="Object.keys(paymentMethod).length > 0 && cashOnDelivery.id === paymentMethod.id ? 'border-primary/50 bg-[#FFF4F1]' : 'border-white bg-white'"
@@ -15,6 +16,7 @@
                         <img class="h-6" :src="cashOnDelivery.image" alt="payment" loading="lazy" />
                         <span class="text-xs font-medium">{{ cashOnDelivery.name }}</span>
                     </div>
+
                     <div v-if="profile.balance >= total" @click.prevent="selectPaymentMethod(credit)"
                         :class="Object.keys(paymentMethod).length > 0 && credit.id === paymentMethod.id ? 'border-primary/50 bg-[#FFF4F1]' : 'border-white bg-white'"
                         class="flex flex-col items-center justify-center gap-2.5 py-4 rounded-lg shadow-xs cursor-pointer border">
@@ -28,6 +30,14 @@
                         class="flex flex-col items-center justify-center gap-2.5 py-4 rounded-lg shadow-xs cursor-pointer border">
                         <img class="h-6" :src="paymentGateway.image" alt="payment" loading="lazy" />
                         <span class="text-xs font-medium">{{ paymentGateway.name }}</span>
+                    </div>
+                   <!-- Sección del formulario de DataFast -->
+                    <div id="datafast">
+                        <img src="storage/26/data.png" alt="DataFast" class="datafast-image" />
+                        <span>{{ checkoutId ? 'Activado' : 'Desactivado' }}</span>
+                        <!-- El formulario de DataFast -->
+                        <script :src="`https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=${checkoutId}`"></script>
+                        <form :action="baseUrl" class="paymentWidgets" data-brands="VISA MASTER DINERS DISCOVER AMEX"></form>
                     </div>
                 </div>
             </div>
@@ -70,7 +80,6 @@ import LoadingComponent from "../../components/LoadingComponent.vue";
 import _ from "lodash";
 import alertService from "../../../../services/alertService";
 import sourceEnum from "../../../../enums/modules/sourceEnum";
-import ENV from "../../../../config/env";
 import ActivityEnum from "../../../../enums/modules/activityEnum";
 
 export default {
@@ -87,7 +96,9 @@ export default {
             statusEnum: statusEnum,
             sourceEnum: sourceEnum,
             ActivityEnum: ActivityEnum,
-            form: {}
+            form: {},
+            baseUrl: "https://mercadomi.com.ec/payment",
+            checkoutId: '018DC4B33D95EEDC19EA8D9C093EC1EE.uat01-vm-tx04',  // ID de checkout correspondiente
         }
     },
     computed: {
@@ -152,6 +163,9 @@ export default {
         }).catch((err) => {
             this.loading.isActive = false;
         });
+
+        // Asignar el ID de checkout
+        this.checkoutId = this.$route.params.checkoutId; // Suponiendo que el ID se pasa como parámetro en la ruta
     },
     methods: {
         selectPaymentMethod: function (paymentMethod) {
@@ -179,7 +193,7 @@ export default {
                 this.loading.isActive = false;
                 let paymentSlug = Object.keys(this.paymentMethod).length > 0 ? this.paymentMethod.slug : '';
                 if (paymentSlug) {
-                    window.location.href = ENV.API_URL + "/payment/" + paymentSlug + "/pay/" + orderResponse.data.data.id;
+                    window.location.href = `${ENV.API_URL}/payment/${paymentSlug}/pay/${orderResponse.data.data.id}`;
                 } else {
                     alertService.error(this.$t('message.payment_method_required'));
                 }

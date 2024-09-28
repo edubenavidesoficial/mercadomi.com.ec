@@ -25,6 +25,6 @@ class SendOtp extends Mailable
 
     public function build()
     {
-        return $this->subject("Reset Password")->markdown('emails.password');
+        return $this->subject("Restablecer contraseña")->markdown('emails.password');
     }
 }

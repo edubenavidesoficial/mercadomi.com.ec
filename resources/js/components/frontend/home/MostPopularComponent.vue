@@ -16,7 +16,16 @@
             </div>
             <div>
                 <div class="block w-full h-full relative">
-                    <img class="banner-image-cat" src="https://mercadomi.com.ec/storage/31/conversions/freshthursday.png" alt="banner" loading="lazy">
+                    <img
+                        class="banner-image-cat"
+                        src="https://mercadomi.com.ec/storage/31/conversions/freshthursday.png"
+                        srcset="
+                            https://mercadomi.com.ec/storage/31/conversions/freshthursday-small.png 600w,
+                            https://mercadomi.com.ec/storage/31/conversions/freshthursday-medium.png 1200w,
+                            https://mercadomi.com.ec/storage/31/conversions/freshthursday-large.png 1800w"
+                        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt="banner"
+                        loading="lazy">
                     <router-link :to="{ path: '/product', query: { category: 'frutas-y-verduras' } }" class="banner-button">
                         Mostrar más
                     </router-link>
@@ -37,8 +46,17 @@
             </div>
             <div>
                 <div class="block w-full h-full relative">
-                    <img class="banner-image-cat" src="https://mercadomi.com.ec/storage/31/conversions/partiesjulianas.jpeg" alt="banner" loading="lazy">
-                    <a href="/#/supermercado" class="banner-button">Mostrar mas</a>
+                    <img
+                        class="banner-image-cat"
+                        src="https://mercadomi.com.ec/storage/31/conversions/partiesjulianas.jpeg"
+                        srcset="
+                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas-small.jpeg 600w,
+                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas-medium.jpeg 1200w,
+                            https://mercadomi.com.ec/storage/31/conversions/partiesjulianas-large.jpeg 1800w"
+                        sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        alt="banner"
+                        loading="lazy">
+                    <a href="/#/supermercado" class="banner-button">Mostrar más</a>
                 </div>
             </div>
         </div>
@@ -84,26 +102,27 @@ export default {
 .text-yellow {
     color: #e01616;
     text-transform: uppercase;
-    font-size: 1.5rem !important;
+    font-size: 1.5rem;
 }
 
 .banner-button {
     position: absolute;
-    top: 4px;
-    right: 5px;
     padding: 1rem;
-    background-color: #ffffffd0;
+    background-color: rgba(255, 255, 255, 0.82);
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
     font-size: 1.2rem;
     font-weight: bold;
     color: red;
     cursor: pointer;
     transition: background-color 0.3s;
-    border-radius: 30px;
 }
 
-@media (min-width: 768px){
+.banner-button:hover {
+    background-color: #ffffff;
+}
+
+@media (min-width: 768px) {
     .banner-button {
         top: 28px;
         right: 34px;
@@ -111,12 +130,10 @@ export default {
     }
 }
 
-.banner-button:hover {
-    background-color: #ffffff;
-}
-
-@media (max-width: 768px){
+@media (max-width: 768px) {
     .banner-button {
+        top: 4px;
+        right: 5px;
         font-size: 0.75rem;
         padding: 0.4rem 0.8rem;
     }

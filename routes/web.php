@@ -31,6 +31,8 @@ Route::prefix('install')->name('installer.')->middleware(['web'])->group(functio
 });
 
 Route::get('/', [RootController::class, 'index'])->middleware(['installed'])->name('home');
+Route::get('/checkout-id', [PaymentController::class, 'getCheckoutId']);
+Route::get('/transaction-status', [PaymentController::class, 'getTransactionStatus']);
 Route::prefix('payment')->name('payment.')->middleware(['installed'])->group(function () {
     Route::get('/{paymentGateway:slug}/pay/{order}', [PaymentController::class, 'index'])->name('index');
     Route::post('/{order}/pay', [PaymentController::class, 'payment'])->name('store');

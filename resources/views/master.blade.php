@@ -16,6 +16,12 @@
     <!-- FAV ICON -->
     <link rel="icon" type="image" href="{{ $favicon }}">
 
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src='https://eu-test.oppwa.com/v1/paymentWidgets.js?checkoutId={checkoutId}'></script>
+    <script type="text/javascript" src="https://www.datafast.com.ec/js/dfAdditionalValidations1.js"></script>
+
+
     @if (!blank($analytics))
         @foreach ($analytics as $analytic)
             @if (!blank($analytic->analyticSections))

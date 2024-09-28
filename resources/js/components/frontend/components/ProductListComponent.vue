@@ -10,6 +10,12 @@
                     class="w-7 h-7 leading-7 rounded-full text-center text-base shadow-badge absolute top-3 right-3 z-10 bg-white">
             </button>
 
+            <button @click="addToCart(product)"
+                class="flex items-center gap-3 px-8 h-12 leading-12 rounded-full transition-all duration-500 bg-slate-mg">
+                <i class="lab-line-bag text-xl"></i>
+            </button>
+
+
             <router-link class="overflow-hidden rounded-xl w-full"
                          :to="{ name: 'frontend.product.details', params: { slug: product.slug }}">
                 <img :src="product.cover" alt="product"
@@ -63,16 +69,52 @@
 
 import starRating from "vue-star-rating";
 import router from "../../../router";
+import alertService from "../../../services/alertService";
+
 export default {
     name: "ProductListComponent",
     components: {
         starRating
     },
     props: {
-        "products": "object",
+        products: {
+            type: Array,
+            default: () => []
+        }
     },
     data() {
         return {
+            enableAddToCardButton: true,
+            selectedVariation: null,
+            productArray: {},
+            variationComponent: false,
+            initProduct: {
+                isVariation: false,
+                variationId: null,
+                sku: null,
+                stock: 0,
+                quantity: 1,
+                discount: 0,
+                price: 0,
+                oldPrice: 0,
+                totalPrice: 0
+            },
+            temp: {
+                name: "",
+                image: "",
+                isVariation: false,
+                variationId: null,
+                productId: 0,
+                sku: null,
+                stock: 0,
+                taxes: {},
+                shipping: {},
+                quantity: 1,
+                discount: 0,
+                price: 0,
+                oldPrice: 0,
+                totalPrice: 0
+            },
             rating: []
         }
     },
@@ -89,6 +131,70 @@ export default {
                 }
             });
         },
+        addToCart: function (product) {
+            this.enableAddToCardButton = true;
+            let price = parseFloat(product.currency_price.replace('$', '')) || 0;
+            this.productArray = {
+                name: product.name,
+                product_id: product.productId,
+                image: product.cover,
+                variation_names: '',
+                variation_id: product.variationId,
+                sku: product.sku,
+                stock: product.stock || 100,
+                taxes: product.taxes || {},
+                shipping: product.shipping || {},
+                quantity: product.quantity || 1,
+                discount: product.discount || 0,
+                price: price,
+                old_price: product.oldPrice || 0,
+                total_price: product.totalPrice || 0
+            };
+
+            if (product.selectedVariation) {
+                this.$store.dispatch("frontendProductVariation/ancestorsToString", product.selectedVariation.id).then((res) => {
+                    this.productArray.variation_names = res.data.data;
+                    this.variationComponent = false;
+                    this.$store.dispatch("frontendCart/lists", this.productArray).then((res) => {
+                        alertService.success(this.$t('message.add_to_cart'));
+                        this.variationComponent = true;
+                        this.productArray = {};
+                        product.selectedVariation = null;
+                        // Restablece valores de producto
+                        Object.assign(product, this.initProduct);
+                        product.totalPrice = product.price;
+                    }).catch((err) => {
+                        alertService.error(this.$t('message.maximum_quantity'));
+                        this.variationComponent = true;
+                        product.selectedVariation = null;
+                        product.stock = this.initProduct.stock;
+                        product.quantity = this.initProduct.quantity;
+                    });
+                }).catch((err) => {});
+            } else {
+                this.$store.dispatch("frontendCart/lists", this.productArray).then((res) => {
+                    alertService.success(this.$t('message.add_to_cart'));
+                    this.enableAddToCardButton = false;
+                    this.productArray = {};
+                    product.selectedVariation = null;
+                    // Restablece valores de producto
+                    Object.assign(product, this.initProduct);
+                    product.totalPrice = product.price;
+                }).catch((err) => {
+                    alertService.error(this.$t('message.maximum_quantity'));
+                    this.enableAddToCardButton = false;
+                    product.selectedVariation = null;
+                    product.stock = this.initProduct.stock;
+                    product.quantity = this.initProduct.quantity;
+                });
+            }
+        }
     }
 }
 </script>
+<style>
+.bg-slate-mg {
+    --tw-bg-opacity: 1;
+    background-color: #e8a623ab;
+}
+</style>
